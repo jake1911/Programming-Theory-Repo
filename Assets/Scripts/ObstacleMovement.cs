@@ -6,10 +6,12 @@ public class ObstacleMovement : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 10f;
+
+    public Car _car;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _car = GameObject.Find("Car").GetComponent<Car>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,14 @@ public class ObstacleMovement : MonoBehaviour
         float z = transform.position.z;
         if (z < 0f)
         {
+            Destroy(gameObject);
+        }
+    }
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            _car.Lives();
             Destroy(gameObject);
         }
     }

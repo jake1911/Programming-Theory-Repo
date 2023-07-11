@@ -23,6 +23,10 @@ public class RoadMovement : MonoBehaviour
     {
         
     }
+    public void IncreaseScrollSpeed()
+    {
+        _scrollSpeed += 20f;
+    }
     public void MoveDown()
     {
         transform.Translate(_scrollSpeed * Time.deltaTime * Vector3.right);
