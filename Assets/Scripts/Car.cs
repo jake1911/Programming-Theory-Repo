@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    [SerializeField]
     public float _speed = 5f,
                   _score = 0f,
                   _multiplier,
@@ -19,13 +18,32 @@ public class Car : MonoBehaviour
     public bool _isLeft;
     public bool _isRight;
 
-    // Start is called before the first frame update
+    
+    public int selectedCar;
+
+    public GameObject hatchback,
+                      truck,
+                      tank;
+    public bool isHatchbackActive,
+                isTruckActive,
+                isTankActive;
+
+    public MainMenu _mainMenu;
+
+    public void Awake()
+    {
+        LoadCar();
+        selectedCar = PlayerPrefs.GetInt("SelectedCar");
+    }
     void Start()
     {
+        selectedCar = PlayerPrefs.GetInt("SelectedCar");
+        LoadCar();
         _anim = GetComponent<Animator>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _roadMovement = GameObject.Find("Road").GetComponent<RoadMovement>();
+        _mainMenu = GameObject.Find("Canvas").GetComponent<MainMenu>();
 
         _isLeft = true;
         _isRight = false;
@@ -33,7 +51,23 @@ public class Car : MonoBehaviour
         _life3.SetActive(false);
         _life2.SetActive(false);
         _multiplier = 2f;
-        
+    }
+    public void LoadCar()
+    {
+        selectedCar = PlayerPrefs.GetInt("SelectedCar");
+
+        if (selectedCar == 1)
+        {
+            SelectHatchback();
+        }
+        else if (selectedCar == 2)
+        {
+             SelectTank();
+        }
+        else if (selectedCar == 3)
+        {
+            SelectTruck();
+        }
     }
 
     // Update is called once per frame
@@ -117,4 +151,20 @@ public class Car : MonoBehaviour
             _roadMovement.OnPlayerDeath();
         }
     }
+    public void SelectHatchback()
+    {
+        isHatchbackActive = true;
+        hatchback.SetActive(true);
+    }
+    public void SelectTruck()
+    {
+        isTruckActive = true;
+        truck.SetActive(true);
+    }
+    public void SelectTank()
+    {
+        isTankActive = true;
+        tank.SetActive(true);
+    }
+
 }

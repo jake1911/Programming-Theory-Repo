@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    [SerializeField]
     private Car car;
+    [SerializeField]
     private CarTank _carTank;
+    [SerializeField]
     private CarTruck _carTruck;
    
     

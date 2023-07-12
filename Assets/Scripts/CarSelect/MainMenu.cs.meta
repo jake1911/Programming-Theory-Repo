@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: da7dba364464a9543b0f75c553075303
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - hatchback: {instanceID: 0}
+  - hatchbackName: {instanceID: 0}
+  - hatchbackStats: {instanceID: 0}
+  - truck: {instanceID: 0}
+  - truckName: {instanceID: 0}
+  - truckStats: {instanceID: 0}
+  - tank: {instanceID: 0}
+  - tankName: {instanceID: 0}
+  - tankStats: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
