@@ -33,11 +33,6 @@ public class CarController : MonoBehaviour
        // _carTruck = GameObject.Find("Car").GetComponent< CarTruck>();
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void RightButton()
     {
         if (selectedCar == 1)
@@ -68,5 +63,4 @@ public class CarController : MonoBehaviour
             _carTruck.Left();
         }
     }
-    
 }

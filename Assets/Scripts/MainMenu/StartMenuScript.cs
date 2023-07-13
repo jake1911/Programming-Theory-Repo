@@ -9,7 +9,8 @@ using UnityEngine.SceneManagement;
 public class StartMenuScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _start,
+    private GameObject _title,
+                       _start,
                        _HTPButton,
                        _HTPPanel,
                        _return,
@@ -25,18 +26,13 @@ public class StartMenuScript : MonoBehaviour
         _audioSource = GetComponent<AudioSource>(); 
         _audioSource.PlayOneShot(_audioClip,0.5f);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void StartGame()
     {
         SceneManager.LoadScene(1);
     }
     public void HowToPlay()
     {
+        _title.SetActive(false);
         _start.SetActive(false);
         _HTPButton.SetActive(false);
         _HTPPanel.SetActive(true);
@@ -44,6 +40,7 @@ public class StartMenuScript : MonoBehaviour
     }
     public void Return()
     {
+        _title.SetActive(true);
         _start.SetActive(true);
         _HTPButton.SetActive(true);
         _HTPPanel.SetActive(false);

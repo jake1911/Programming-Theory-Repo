@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public GameObject hatchback, hatchbackName, hatchbackStats,
                       truck, truckName, truckStats,
                       tank, tankName, tankStats;
+    public AudioSource _audiosource;
     public bool isHatchbackActive,
                 isTruckActive,
                 isTankActive;
@@ -21,6 +22,8 @@ public class MainMenu : MonoBehaviour
     {
         SelectHatchback();
         selectedCar = 1;
+        _audiosource = GetComponent<AudioSource>();
+        _audiosource.Play();
     }
     public void SaveCar()
     {

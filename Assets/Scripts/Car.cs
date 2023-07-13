@@ -15,6 +15,7 @@ public class Car : MonoBehaviour
     public SpawnManager _spawnManager;
     public ObstacleMovement _obstacleMovement;
     public RoadMovement _roadMovement;
+    public SoundManager _soundManager;
     public bool _isLeft;
     public bool _isRight;
 
@@ -117,6 +118,7 @@ public class Car : MonoBehaviour
         }
         if (_lives == 0)
         {
+            _soundManager.GameOver();
             _life1.SetActive(false);
             _uiManager.GameOver();
             _spawnManager.OnPlayerDeath();
@@ -124,12 +126,14 @@ public class Car : MonoBehaviour
             dirtTracks.SetActive(false);
         }
     }
+    public virtual void OnCollisionEnter(Collision collision)
+    {
+        _soundManager.Crash();
+    }
     public virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Obstacle"))
         {
-            //var main = _explosion.main;
-            // main.useUnscaledTime = useUnscaledTime;
             if (Time.timeScale < 0.01f)
             {
                 _explosion.Simulate(Time.unscaledDeltaTime, true, false);
@@ -140,10 +144,10 @@ public class Car : MonoBehaviour
             var ex = Instantiate(_explosion, transform.position + new Vector3(0,0,4), _explosion.transform.rotation);
             _explosion.Play();
             Destroy(ex.gameObject, 2f);
-
         }
         else if (other.CompareTag("Coin"))
         {
+            _soundManager.Coin();
             float x = transform.position.x;
             var ex = Instantiate(_coinPop, new Vector3(x,2,16), _coinPop.transform.rotation);
             _coinPop.Play();
