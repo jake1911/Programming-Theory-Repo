@@ -18,32 +18,22 @@ public class Car : MonoBehaviour
     public bool _isLeft;
     public bool _isRight;
 
-    
-    public int selectedCar;
+    public GameObject dirtTracks;
 
-    public GameObject hatchback,
-                      truck,
-                      tank;
-    public bool isHatchbackActive,
-                isTruckActive,
-                isTankActive;
+    public ParticleSystem _explosion, _coinPop;
+    public bool useUnscaledTime = false;
 
     public MainMenu _mainMenu;
 
-    public void Awake()
-    {
-        LoadCar();
-        selectedCar = PlayerPrefs.GetInt("SelectedCar");
-    }
     void Start()
     {
-        selectedCar = PlayerPrefs.GetInt("SelectedCar");
-        LoadCar();
+
         _anim = GetComponent<Animator>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _roadMovement = GameObject.Find("Road").GetComponent<RoadMovement>();
         _mainMenu = GameObject.Find("Canvas").GetComponent<MainMenu>();
+        
 
         _isLeft = true;
         _isRight = false;
@@ -52,25 +42,6 @@ public class Car : MonoBehaviour
         _life2.SetActive(false);
         _multiplier = 2f;
     }
-    public void LoadCar()
-    {
-        selectedCar = PlayerPrefs.GetInt("SelectedCar");
-
-        if (selectedCar == 1)
-        {
-            SelectHatchback();
-        }
-        else if (selectedCar == 2)
-        {
-             SelectTank();
-        }
-        else if (selectedCar == 3)
-        {
-            SelectTruck();
-        }
-    }
-
-    // Update is called once per frame
     void Update()
     {
         
@@ -147,24 +118,36 @@ public class Car : MonoBehaviour
         if (_lives == 0)
         {
             _life1.SetActive(false);
+            _uiManager.GameOver();
             _spawnManager.OnPlayerDeath();
             _roadMovement.OnPlayerDeath();
+            dirtTracks.SetActive(false);
         }
     }
-    public void SelectHatchback()
+    public virtual void OnTriggerEnter(Collider other)
     {
-        isHatchbackActive = true;
-        hatchback.SetActive(true);
-    }
-    public void SelectTruck()
-    {
-        isTruckActive = true;
-        truck.SetActive(true);
-    }
-    public void SelectTank()
-    {
-        isTankActive = true;
-        tank.SetActive(true);
-    }
+        if (other.CompareTag("Obstacle"))
+        {
+            //var main = _explosion.main;
+            // main.useUnscaledTime = useUnscaledTime;
+            if (Time.timeScale < 0.01f)
+            {
+                _explosion.Simulate(Time.unscaledDeltaTime, true, false);
+                var exp = Instantiate(_explosion, transform.position + new Vector3(0, 0, 4), _explosion.transform.rotation);
+                _explosion.Play();
+                Destroy(exp.gameObject, 2f);
+            }
+            var ex = Instantiate(_explosion, transform.position + new Vector3(0,0,4), _explosion.transform.rotation);
+            _explosion.Play();
+            Destroy(ex.gameObject, 2f);
 
+        }
+        else if (other.CompareTag("Coin"))
+        {
+            float x = transform.position.x;
+            var ex = Instantiate(_coinPop, new Vector3(x,2,16), _coinPop.transform.rotation);
+            _coinPop.Play();
+            Destroy(ex.gameObject, 1f);           
+        }
+    }
 }

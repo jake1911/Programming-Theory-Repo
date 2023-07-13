@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8345635520292204384}
   m_Layer: 0
   m_Name: Coin
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 20
   _pointValue: 5
+  _coinPop: {fileID: 19860484, guid: 6586ff0f14125534cae2f5d8f04b7871, type: 3}
 --- !u!65 &-8345635520292204384
 BoxCollider:
   m_ObjectHideFlags: 0

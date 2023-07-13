@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class CarTruck : Car
 {
-    public new void Awake()
-    {
-        LoadCar();
-        selectedCar = PlayerPrefs.GetInt("SelectedCar");
-    }
     void Start()
     {
-        selectedCar = PlayerPrefs.GetInt("SelectedCar");
-        LoadCar();
         _anim = GetComponent<Animator>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
@@ -25,4 +18,5 @@ public class CarTruck : Car
         _multiplier = 2f;
         _life3.SetActive(false);
     }
+
 }

@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 3604495669291668210}
   m_Layer: 0
   m_Name: Cow_35
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -792,7 +792,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea4c3a2e1540214cafd1d8ffdc5b150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _explosion: {fileID: 6100863904795746617, guid: ea12553ffbee8e847a65140d4f198b3d, type: 3}
   _speed: 40
+  _car: {fileID: 0}
 --- !u!1 &4703053188458212810
 GameObject:
   m_ObjectHideFlags: 0

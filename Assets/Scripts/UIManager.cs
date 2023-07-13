@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class UIManager : MonoBehaviour
     public int _level;
     [SerializeField]
     private GameObject _hatchback, _tank, _truck;
-
+    [SerializeField]
+    private GameObject _gameOverPanel, _gameOverText, _pauseText, _resume, _restart, _mainMenu;
     void Start()
     {
         _level = 1;
@@ -53,5 +55,48 @@ public class UIManager : MonoBehaviour
         {
             _truck.SetActive(true);
         }
+    }
+    public void GameOver()
+    {
+        OpenGameOverPanel();
+        _gameOverText.SetActive(true);  
+    }
+    public void Pause()
+    {
+        OpenGameOverPanel();
+        _pauseText.SetActive(true);
+        _resume.SetActive(true);    
+
+        Time.timeScale = 0;
+    }
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        CloseGameOverPanel();
+    }
+    public void Restart()
+    {
+        Resume();
+        SceneManager.LoadScene(2);
+    }
+    public void MainMenu()
+    {
+        Resume();
+        SceneManager.LoadScene(0);
+    }
+    private void CloseGameOverPanel()
+    {
+        _gameOverPanel.SetActive(false);
+        _pauseText.SetActive(false);
+        _gameOverText.SetActive(false);
+        _resume.SetActive(false);
+        _restart.SetActive(false);
+        _mainMenu.SetActive(false);
+    }
+    public void OpenGameOverPanel()
+    {
+        _gameOverPanel.SetActive(true);
+        _restart.SetActive(true);
+        _mainMenu.SetActive(true);
     }
 }

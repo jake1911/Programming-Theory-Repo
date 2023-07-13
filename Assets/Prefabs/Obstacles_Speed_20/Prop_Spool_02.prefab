@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -6463802707069274668}
   m_Layer: 0
   m_Name: Prop_Spool_02
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 20
+  _explosion: {fileID: 6100863904795746617, guid: ea12553ffbee8e847a65140d4f198b3d, type: 3}
+  _car: {fileID: 0}
 --- !u!65 &3639746811954045719
 BoxCollider:
   m_ObjectHideFlags: 0

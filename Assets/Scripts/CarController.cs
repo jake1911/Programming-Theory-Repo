@@ -10,17 +10,29 @@ public class CarController : MonoBehaviour
     private CarTank _carTank;
     [SerializeField]
     private CarTruck _carTruck;
-   
-    
+
+    private int selectedCar;
+
     // Start is called before the first frame update
+    private void Awake()
+    {
+        selectedCar = PlayerPrefs.GetInt("SelectedCar");
+    }
     void Start()
     {
-        car = GameObject.Find("Car").GetComponent<Car>();
-        _carTank = GameObject.Find("Car").GetComponent<CarTank>();
-        _carTruck = GameObject.Find("Car").GetComponent< CarTruck>();
-        
+        if (selectedCar == 1) 
+        {
+        //car = GameObject.Find("Car").GetComponent<Car>();
+        }
+        else if (selectedCar == 2)
+        {
+        //_carTank = GameObject.Find("Car").GetComponent<CarTank>();
+        }
+        else if (selectedCar == 3)
+        {
+       // _carTruck = GameObject.Find("Car").GetComponent< CarTruck>();
+        }
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -28,15 +40,33 @@ public class CarController : MonoBehaviour
     }
     public void RightButton()
     {
-        car.Right();
-        _carTank.Right();
-        _carTruck.Right();
+        if (selectedCar == 1)
+        {
+            car.Right();
+        }
+        else if (selectedCar == 2)
+        {
+            _carTank.Right();
+        }
+        else if (selectedCar == 3)
+        {
+            _carTruck.Right();
+        }
     }
     public void LeftButton()
     {
-        car.Left();
-        _carTank.Left();
-        _carTruck.Left();
+        if (selectedCar == 1)
+        {
+            car.Left();
+        }
+        else if (selectedCar == 2)
+        {
+            _carTank.Left();
+        }
+        else if (selectedCar == 3)
+        {
+            _carTruck.Left();
+        }
     }
     
 }
